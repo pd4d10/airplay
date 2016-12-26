@@ -4,7 +4,7 @@ const ip = require('ip')
 // const Bonjour = require('bonjour')
 const config = require('./config')
 const server = require('./server')
-const request = require('./request')
+const Client = require('./client')
 
 // const bonjour = Bonjour()
 
@@ -27,12 +27,17 @@ async function index(filePath) {
       fileSize: stat.size,
     })
 
-    request.play({
-      ip: config.ip,
-      port: config.port,
+    const client = new Client(config)
+
+    await client.play({
       location: `http://${HOST}:${PORT}`,
       position: 0,
     })
+
+    setInterval(async () => {
+      const { duration, position } = await client.scrub()
+      console.log(duration, position)
+    }, 4000)
   } catch (err) {
     console.log(err)
   }

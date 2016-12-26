@@ -1,10 +1,12 @@
 const fs = require('fs')
 const http = require('http')
 const mime = require('mime')
+const ffmpeg = require('fluent-ffmpeg')
 
 function server({ filePath, fileSize, port = 8080 }) {
   return http.createServer((req, res) => {
-    const contentType = mime.lookup(filePath)
+    // const contentType = mime.lookup(filePath)
+    const contentType = 'video/mp4'
 
     const range = req.headers.range || '0-'
     console.log('Request range ', range)
@@ -24,6 +26,15 @@ function server({ filePath, fileSize, port = 8080 }) {
       'Content-Type': contentType,
     })
 
+    // return ffmpeg(fs.createReadStream(filePath, { start, end }))
+    //   .videoCodec('libx264')
+    //   .on('error', (err) => {
+    //     console.log(`An error occurred: ${err.message}`)
+    //   })
+    //   .on('end', () => {
+    //     console.log('Processing finished !')
+    //   })
+    //   .pipe(res)
     return fs.createReadStream(filePath, { start, end }).pipe(res)
   })
   .listen(port)

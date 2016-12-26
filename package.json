@@ -22,6 +22,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "bonjour": "^3.5.0",
+    "fluent-ffmpeg": "^2.1.0",
     "ip": "^1.1.4",
     "mime": "^1.3.4",
     "node-fetch": "^1.6.3"
