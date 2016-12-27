@@ -8,7 +8,8 @@
   "devDependencies": {
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "webpack": "^1.14.0"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -22,9 +23,13 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "bonjour": "^3.5.0",
+    "electron": "^1.4.13",
     "fluent-ffmpeg": "^2.1.0",
     "ip": "^1.1.4",
     "mime": "^1.3.4",
     "node-fetch": "^1.6.3"
+  },
+  "scripts": {
+    "start": "electron ."
   }
 }
