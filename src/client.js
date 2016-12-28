@@ -7,9 +7,7 @@ const fetch = require('node-fetch')
 
 module.exports = class Request {
   constructor({ ip, port }) {
-    // this.ip = ip
-    // this.port = port
-    this.fetch = (url, options) => fetch(`http://${ip}:${port}/${url}`, options)
+    this.fetch = (url, options) => fetch(`http://${ip}:${port}${url}`, options)
   }
 
   async post(url) {
@@ -49,7 +47,7 @@ module.exports = class Request {
   async getPosition() {
     const res = await this.fetch('/scrub')
     const text = await res.text()
-    return parse(text, '\n', ' ')
+    return parse(text, '\n', ': ')
   }
 
   async getPlayBackInfo() {

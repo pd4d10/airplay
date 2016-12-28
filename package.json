@@ -30,6 +30,13 @@
     "node-fetch": "^1.6.3"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "concurrently --kill-others 'webpack -dw' 'electron .'",
+    "webpack": "webpack -dw",
+    "electron": "electron app.js"
+  },
+  "babel": {
+    "presets": [
+      "stage-0"
+    ]
   }
 }
